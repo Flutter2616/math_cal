@@ -9,7 +9,7 @@ class Math extends StatefulWidget {
 
 class _MathState extends State<Math> {
   String value = "";
-  num ans = 0;
+  num ans=0;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,8 @@ class _MathState extends State<Math> {
             alignment: Alignment.bottomRight,
             color: Colors.white,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              // crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
                   "$value",
@@ -304,49 +305,51 @@ class _MathState extends State<Math> {
   void calculation() {
     String first="",last="",sign="";
     int opretor=0;
-    for(int i=0;i<value.length;i++)
-      {
-        if(value[i]!="+"||value[i]!="-"||value[i]!="*"||value[i]!="/"||value[i]!="%")
-          {
-            first+=value[i];
-          }
-        else
-            {
-              opretor=i;
-              sign=value[i];
-              break;
-            }
-print(first);
+    for(int i=0;i<value.length;i++) {
+      if (value[i] != "+" && value[i] != "-" && value[i] != "*" &&
+          value[i] != "/" && value[i] != "%") {
+        first += value[i];
+      }
+      else {
+        opretor = i;
+        sign = value[i];
+        break;
+      }
+    }
+
+print(sign);
+
         for(int j=opretor+1;j<value.length;j++)
           {
             last+=value[j];
           }
-print(last);
+
+// print(last);
+
         setState(() {
           switch(sign)
               {
                 case "+":
-                  ans=double.parse(first)+double.parse(last);
+                  ans=num.parse(first)+num.parse(last);
                   break;
 
                   case "-":
-                  ans=double.parse(first)-double.parse(last);
+                  ans=num.parse(first)-num.parse(last);
                   break;
 
             case "*":
-              ans=double.parse(first)*double.parse(last);
+              ans=num.parse(first)*num.parse(last);
               break;
 
             case "/":
-              ans=double.parse(first)/double.parse(last);
+              ans=num.parse(first)/num.parse(last);
               break;
 
             case "%":
-              ans=double.parse(first)%double.parse(last);
+              ans=num.parse(first)%num.parse(last);
               break;
               }
         });
       }
-  }
 
 }
